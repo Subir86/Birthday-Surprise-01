@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#fff1f8">
+  <title>Birthday World 🎂</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <header id="party-header" class="party-header" hidden>
+      <div class="header-top">
+        <span class="brand">🤖 Birthday World</span>
+        <button id="music-btn" class="music-btn" type="button" aria-pressed="true">🔊 Sound Effects: ON</button>
+      </div>
+      <div class="progress-info">
+        <span id="page-label">Page 1</span><span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+    </header>
+
+    <!-- PAGE 1: Keep the welcome experience -->
+    <section class="page active" id="page-1">
+      <div class="card welcome-card">
+        <div class="hero-emoji">🎂</div>
+        <p class="eyebrow">A little surprise is waiting...</p>
+        <h1>Welcome to Your Birthday Party!</h1>
+        <p class="subtitle">A virtual celebration made with love, laughter and friendship. 💖</p>
+        <label for="friend-name">What should we call you?</label>
+        <input id="friend-name" type="text" placeholder="Enter your name..." maxlength="35" autocomplete="off">
+        <label for="friend-dob">Your birthday (optional)</label>
+        <input id="friend-dob" type="date">
+        <p id="entry-error" class="error-message" role="alert"></p>
+        <button id="start-btn" class="primary-btn">Let's Celebrate! ✨</button>
+        <p class="small-note">Made especially for you 💌</p>
+      </div>
+    </section>
+
+    <!-- PAGE 2: Existing welcome page -->
+    <section class="page" id="page-2" hidden>
+      <div class="card">
+        <div class="hero-emoji">🥳</div>
+        <p class="eyebrow">Breaking news!</p>
+        <h1>Oye, <span class="friend-name">Birthday Star</span>! 🎉</h1>
+        <p class="story">Today is your very special day! No boring routines, no sadness—just fun, surprises, cake, and lots of love. 💗</p>
+        <p class="story">The celebration may be virtual, but these wishes are absolutely real. Get ready for your special birthday party!</p>
+        <div class="emoji-row">🎁 💖 🎈 🎂 🎊</div>
+        <button class="primary-btn" id="welcome-next">Let the Party Begin! 🚀</button>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+
+    <!-- PAGE 3: 72-second birthday animation -->
+    <section class="page" id="page-3" hidden>
+      <div class="card story-card">
+        <p class="eyebrow">A tiny birthday delivery team</p>
+        <h1>Special delivery for <span class="friend-name">Star</span>! 📦</h1>
+        <p class="story" id="scene-caption">Four friends are getting something special ready...</p>
+        <div class="stage cinematic-stage" id="robot-stage">
+          <div class="stage-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="light-beam" aria-hidden="true"></div>
+          <div class="speed-lines" aria-hidden="true"></div>
+          <div class="robot-row" id="character-row" aria-label="Four birthday characters"></div>
+          <div class="birthday-decorations" id="birthday-decorations" aria-hidden="true">
+            <strong>HAPPY BIRTHDAY</strong>
+            <i class="balloon balloon-one"></i><i class="balloon balloon-two"></i><i class="balloon balloon-three"></i>
+            <span class="decoration-star star-one">✦</span><span class="decoration-star star-two">✦</span>
+          </div>
+          <div class="delivery-cake cake-visual" id="delivery-cake" aria-label="First birthday cake" hidden><i></i><b></b></div>
+          <div class="stage-floor"></div>
+          <div class="impact-ring" aria-hidden="true"></div>
+          <div class="spark-burst" aria-hidden="true">✦ ✧ ✦</div>
+          <div class="sad-pop" id="sad-pop" hidden>OH NOOO! THE CAKE! 😭</div>
+          <div class="impact-flash" aria-hidden="true"></div>
+          <div class="real-cake cake-visual" id="real-cake" aria-label="Replacement birthday cake" hidden><i></i><b></b></div>
+        </div>
+        <div class="robot-dialogue" id="robot-dialogue" aria-live="polite">
+          <span class="dialogue-speaker" id="dialogue-speaker">BIRTHDAY CREW</span>
+          <p id="dialogue-line">Start the birthday animation!</p>
+          <div class="dialogue-progress"><span id="dialogue-progress-bar"></span></div>
+        </div>
+        <p class="scene-status" id="scene-status">Four friends are ready to celebrate.</p>
+        <button class="primary-btn" id="scene-next">Start the 72-second show</button>
+        <button class="secondary-btn" id="scene-replay" type="button" hidden>Restart animation</button>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+
+    <!-- PAGE 4: Cake celebration -->
+    <section class="page" id="page-4" hidden>
+      <div class="card">
+        <div class="hero-emoji">🎂</div>
+        <p class="eyebrow">The real cake has arrived!</p>
+        <h1>Make a wish, <span class="friend-name">Star</span>! ✨</h1>
+        <p class="story">Make a secret wish... then let’s cut the cake! 💗</p>
+        <div class="cake-party" id="cake-party">
+          <div class="cake-candles" id="candles">🕯️ 🕯️ 🕯️</div>
+          <div class="cake-top">🍓 🎂 🍓</div><div class="cake-body"></div><div class="cake-plate"></div>
+        </div>
+        <p class="feedback" id="cake-message" aria-live="polite">Close your eyes and make a wish! 🌟</p>
+        <button class="primary-btn" id="cut-cake-btn">Cut the Cake! 🔪</button>
+        <button class="primary-btn" id="cake-next" hidden>Meet the robot team ➜</button>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+
+    <!-- PAGE 5: Quiz -->
+    <section class="page" id="page-5" hidden>
+      <div class="card">
+        <div class="robot-mini">🤖 <span>Robot 1: Quiz Master</span></div>
+        <p class="eyebrow">Robot 1 presents</p><h1>Friendship Quiz 😂</h1>
+        <p class="story">Be honest... the robot is recording everything! 🤭</p>
+        <div class="quiz-counter" id="quiz-counter">Question 1 of 7</div>
+        <div id="quiz-content">
+          <h2 id="question-text"></h2>
+          <div id="answer-options" class="answer-options"></div>
+          <p id="quiz-feedback" class="feedback" aria-live="polite"></p>
+          <button id="quiz-next" class="primary-btn" hidden>Next Question ➜</button>
+        </div>
+        <div id="quiz-result" class="quiz-result" hidden>
+          <div class="quiz-result-icon" aria-hidden="true">🎉</div>
+          <h2>Quiz Completed! 🎉</h2>
+          <p class="story">Seven questions survived. Your birthday energy is officially iconic! 😎</p>
+          <button id="quiz-restart" class="secondary-btn quiz-restart" type="button">Restart Quiz ↻</button>
+          <button id="quiz-continue" class="primary-btn" type="button">Continue to Messages ➜</button>
+        </div>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+
+    <!-- PAGE 6: Messages -->
+    <section class="page" id="page-6" hidden>
+      <div class="card">
+        <div class="robot-mini">🤖 <span>Robot 4: Wish Maker</span></div>
+        <p class="eyebrow">Robot 4 presents</p><h1>Little Messages 💌</h1>
+        <p class="story">The last robot has a few special words for you...</p>
+        <div class="message-card"><div class="message-heart">💗</div><p id="message-text" class="message-text"></p><p id="message-count" class="small-note"></p></div>
+        <button id="message-next" class="primary-btn">Next message 💌</button>
+        <button id="message-continue" class="primary-btn" hidden>Bring everyone together! 🌟</button>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+
+    <!-- PAGE 7: Final -->
+    <section class="page final-page" id="page-7" hidden>
+      <div class="card final-card">
+        <p class="eyebrow">All four robots have a message</p>
+        <div class="final-robots">
+          <img src="stickers/sticker-13.png" alt="Sticker 13">
+          <img src="stickers/sticker-13.png" alt="Sticker 13">
+          <img src="stickers/sticker-13.png" alt="Sticker 13">
+          <img src="stickers/sticker-13.png" alt="Sticker 13">
+        </div>
+        <div class="hero-emoji">🎉</div>
+        <h1>Happy Birthday, <span class="friend-name">Birthday Star</span>! 🎂</h1>
+        <div class="final-emojis">🎈 💖 🎁 🥳 🎊</div>
+        <p class="story">May your life be filled with happiness, wonderful people, unforgettable memories, and unexpected blessings. ✨</p>
+        <p class="story">Always keep chasing your dreams, and remember: you are special. 💗</p>
+        <p id="final-dob" class="dob-note"></p>
+        <div class="robot-final-message">"Mission complete! We brought smiles, surprises and lots of birthday love!" 💕</div>
+        <h2 class="final-wish">Lots of love and birthday wishes! 💌</h2>
+        <button id="confetti-btn" class="primary-btn">Celebrate Again! 🎊</button>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+
+    <footer id="party-footer" hidden>Made with 💖 for your special day</footer>
+  </main>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <script src="opening-animation.js"></script>
+  <script src="script_english.js"></script>
+</body>
+</html>
